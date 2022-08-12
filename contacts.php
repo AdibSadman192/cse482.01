@@ -1,7 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+session_start();
 include "db_connection.php";
+if(isset($_POST['submit'])){
+    $name=$_POST['name'];
+    $email=$_POST['email'];
+    $message=$_POST['message'];
+    $sql = "INSERT INTO contacts (name, email, message)
+    VALUES ('$name', '$email', '$message')";
+    
+    if (mysqli_query($link, $sql)) {
+      session_start();
+      header("Location:index.php");
+    } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+    }
+    
 ?>
 <head>
     <meta charset="utf-8">
@@ -33,7 +49,23 @@ include "db_connection.php";
                     <li class="nav-item"><a class="nav-link" href="services.php">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="packages.php">Packages</a></li>
                     <li class="nav-item"><a class="nav-link active" href="contacts.php">Contacts</a></li>
-                </ul><a class="btn btn-primary shadow" role="button" href="login.php">Log in</a>
+                    <?php
+                    if(isset($_SESSION["email"])) {
+?>
+<?php  $_SESSION["email"]; ?><li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
+<?php
+}
+?>
+
+                    <?php
+                    if(isset($_SESSION["email"])) {
+?>
+<?php  $_SESSION["email"]; ?></ul><a class="btn btn-primary shadow" role="button" title="logout" href="logout.php">Logout</a>
+<?php
+}else { ?>
+  </ul><a class="btn btn-primary shadow" role="button" href="login.php">Login</a>
+<?php }
+?>
             </div>
         </div>
     </nav>
@@ -48,11 +80,11 @@ include "db_connection.php";
             <div class="row d-flex justify-content-center">
                 <div class="col-md-6 col-xl-4">
                     <div>
-                        <form class="p-3 p-xl-4" method="post">
-                            <div class="mb-3"><input class="form-control" type="text" id="name-1" name="name" placeholder="Name"></div>
-                            <div class="mb-3"><input class="form-control" type="email" id="email-1" name="email" placeholder="Email"></div>
-                            <div class="mb-3"><textarea class="form-control" id="message-1" name="message" rows="6" placeholder="Message"></textarea></div>
-                            <div><button class="btn btn-primary shadow d-block w-100" type="submit">Send </button></div>
+                        <form class="p-3 p-xl-4" method="post" action="getcontact.php">
+                            <div class="mb-3"><input class="form-control" type="text" id="name" name="name" placeholder="Name"></div>
+                            <div class="mb-3"><input class="form-control" type="email" id="email" name="email" placeholder="Email"></div>
+                            <div class="mb-3"><textarea class="form-control" id="message" name="message" rows="6" placeholder="Message"></textarea></div>
+                            <div><button class="btn btn-primary shadow d-block w-100" type="input" name="submit">Send </button></div>
                         </form>
                     </div>
                 </div>
@@ -116,6 +148,7 @@ include "db_connection.php";
      <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.js"></script>
      <script src="https://geodata.solutions/includes/countrystate.js"></script>
      <script src="assets/js/slider.js"></script>
+     <script src="//code.tidio.co/dcuugxi51ylnumlxw9bji5gjqpsjcyta.js" async></script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+session_start();
 include "db_connection.php";
 ?>
 <head>
@@ -33,7 +34,22 @@ include "db_connection.php";
                     <li class="nav-item"><a class="nav-link" href="services.php">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="packages.php">Packages</a></li>
                     <li class="nav-item"><a class="nav-link" href="contacts.php">Contacts</a></li>
-                </ul><a class="btn btn-primary shadow" role="button" href="login.php">Log in</a>
+                    <?php
+                    if(isset($_SESSION["email"])) {
+?>
+<?php  $_SESSION["email"]; ?><li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
+<?php
+}
+?>
+                    <?php
+                    if(isset($_SESSION["email"])) {
+?>
+<?php  $_SESSION["email"]; ?></ul><a class="btn btn-primary shadow" role="button" title="logout" href="logout.php">Logout</a>
+<?php
+}else { ?>
+  </ul><a class="btn btn-primary shadow" role="button" href="login.php">Login</a>
+<?php }
+?>
             </div>
         </div>
     </nav>

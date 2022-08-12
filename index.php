@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-session_start();
 include "db_connection.php";
+session_start();
+
 ?>
 <head>
     <meta charset="utf-8">
@@ -16,6 +17,7 @@ include "db_connection.php";
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.css">
     <link rel="stylesheet" href="assets/css/slider.css">
+    <link rel="stylesheet" href="assets/css/cookies.css">
    
 </head>
 
@@ -34,8 +36,27 @@ include "db_connection.php";
                     <li class="nav-item"><a class="nav-link" href="services.php">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="packages.php">Packages</a></li>
                     <li class="nav-item"><a class="nav-link" href="contacts.php">Contacts</a></li>
+                    
+                    <?php
+                    if(isset($_SESSION["email"])) {
+?>
+<?php  $_SESSION["email"]; ?><li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
+<?php
+}
+?>
+                    
                     <!-- <li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li> -->
-                </ul><a class="btn btn-primary shadow" role="button" href="login.php">Log in</a>
+                    <?php
+                     
+                      
+                    if(isset($_SESSION["email"])) {
+?>
+<?php  $_SESSION["email"]; ?></ul><a class="btn btn-primary shadow" role="button" title="logout" href="logout.php">Logout</a>
+<?php
+}else { ?>
+  </ul><a class="btn btn-primary shadow" role="button" href="login.php">Login</a>
+<?php }
+?>
             </div>
         </div>
     </nav>
@@ -54,7 +75,17 @@ include "db_connection.php";
                 <div class="swiper-button-next"></div>
             </div>
         </div>
-    </section><div class="pricing1 py-5 bg-light">
+    </section>
+    <section>
+
+ <!-- Search box -->
+<div class="form-outline">
+  <input type="search" id="search" class="form-control" placeholder="Type query" aria-label="Search" />
+</div> 
+
+    </section>
+<br> 
+    <div class="pricing1 py-5 bg-light">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8 text-center">
@@ -72,10 +103,10 @@ include "db_connection.php";
      $link = mysqli_connect("localhost", "root", "", "online_service_agency");
       $query = "SELECT * FROM home_packages;";
             $result = mysqli_query($link, $query);
-            if(mysqli_num_rows($result) > 0){     //returns the number of rows in a result set
-      while($row = mysqli_fetch_assoc($result)) {  //return an associative array representing the next row
+            if(mysqli_num_rows($result) > 0){
+      while($row = mysqli_fetch_assoc($result)) {
         ?>
-      <div class="col-lg-3 col-md-6">
+      <div class="col-lg-3 col-md-6" id="display">
         <div class="card text-center card-shadow on-hover border-0 mb-4">
           <div class="card-body font-14">
             <h5 class="mt-3 mb-1 font-weight-medium"><?php echo $row['hpackages_name'];?></h5>
@@ -94,7 +125,16 @@ include "db_connection.php";
               <li class="d-block py-2">&nbsp;</li>
             </ul>
             <div class="bottom-btn">
-              <a class="btn btn-success-gradiant btn-md text-white btn-block" href="cart.php"><span>Add To Cart</span></a>
+            <?php
+                    if(isset($_SESSION["email"])) {
+              ?>
+              <?php  $_SESSION["email"]; ?><a class="btn btn-success-gradiant btn-md text-white btn-block" href="cart.php" name="add"><span>Add To Cart</span></a>
+              <?php
+              }else { ?>
+                <a class="btn btn-success-gradiant btn-md text-white btn-block" href="login.php"><span>Add To Cart</span></a>
+              <?php }
+              ?>
+             
             </div>
           </div>
         </div>
@@ -106,6 +146,18 @@ include "db_connection.php";
     </div>
   </div>
 </div>
+<!-- cookies -->
+<div class="wrapper">
+    <img src="#" alt="">
+    <div class="contents">
+      <header>Cookies Consent</header>
+      <p>This website use cookies to ensure you get the best experience on our website.</p>
+      <div class="buttons">
+        <button class="items">I understand</button>
+        <a href="#" class="items">Learn more</a>
+      </div>
+    </div>
+  </div>
 
 <!-- footer -->
     <footer class="text-center">
@@ -139,6 +191,27 @@ include "db_connection.php";
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.js"></script>
     <script src="https://geodata.solutions/includes/countrystate.js"></script>
     <script src="assets/js/slider.js"></script>
-</body>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/search.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.js"></script>
+
+    <script src="//code.tidio.co/dcuugxi51ylnumlxw9bji5gjqpsjcyta.js" async></script>
+    <script>
+    const cookieBox = document.querySelector(".wrapper"),
+    acceptBtn = cookieBox.querySelector("button");
+    acceptBtn.onclick = ()=>{
+      //setting cookie for 1 month, after one month it'll be expired automatically
+      document.cookie = "Cookies=Online.Service; max-age="+60*60*24*30;
+      if(document.cookie){ //if cookie is set
+        cookieBox.classList.add("hide"); //hide cookie box
+      }else{ //if cookie not set then alert an error
+        alert("Cookie can't be set! Please unblock this site from the cookie setting of your browser.");
+      }
+    }
+    let checkCookie = document.cookie.indexOf("Cookies=Online.Service"); //checking our cookie
+    //if cookie is set then hide the cookie box else show it
+    checkCookie != -1 ? cookieBox.classList.add("hide") : cookieBox.classList.remove("hide");
+  </script>
+  </body>
 
 </html>

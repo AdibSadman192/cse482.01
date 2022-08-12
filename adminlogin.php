@@ -3,12 +3,12 @@
 <?php
 
 include "db_connection.php";
-include "userlogincheck.php";
+include "admin_usercheck.php";
 ?>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Login - Online.Service</title>
+    <title>Admin Login - Online.Service</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -41,12 +41,12 @@ include "userlogincheck.php";
                     <li class="nav-item"><a class="nav-link" href="contacts.php">Contacts</a></li>
                     
                     <?php
-                    if(isset($_SESSION["email"])) {
+                    if(isset($_SESSION["aemail"])) {
 ?>
-<?php  $_SESSION["email"]; ?></ul><a class="btn btn-primary shadow" role="button" title="logout" href="logout.php">Logout</a>
+<?php  $_SESSION["aemail"]; ?></ul><a class="btn btn-primary shadow" role="button" title="logout" href="logout.php">Logout</a>
 <?php
 }else { ?>
-  </ul><a class="btn btn-primary shadow" role="button" href="signup.php">Signup</a>
+  </ul><a class="btn btn-primary shadow" role="button" href="adminlogin.php">Login</a>
 <?php }
 ?>
             </div>
@@ -62,19 +62,18 @@ include "userlogincheck.php";
                                 <div class="col-lg-12">
                                     <div class="p-5">
                                         <div class="text-center">
-                                            <h4 class="text-dark mb-4">Welcome Back!</h4>
+                                            <h4 class="text-dark mb-4">Welcome Admin!</h4>
                                         </div>
                                         <form class="user" method="POST">
-                                            <div class="mb-3"><input class="form-control form-control-user" type="email" id="email" aria-describedby="emailHelp" placeholder="Enter Email Address" name="email"  required=""></div>
+                                            <div class="mb-3"><input class="form-control form-control-user" type="email" id="email" aria-describedby="emailHelp" placeholder="Enter Email Address" name="aemail"  required=""></div>
                                             <div class="mb-3"><input class="form-control form-control-user" type="password" id="password" placeholder="Password" name="password"   required=""></div>
                                             <div class="row mb-3">
                                                 <p id="errorMsg" class="text-danger" style="display:none;">Paragraph</p>
                                             </div><button class="btn btn-primary d-block btn-user w-100" id="submitBtn" type="submit" name=" submit" value="submit">Login</button>
                                             <hr>
                                         </form>
-                                        <div class="text-center"><a class="small" href="resetpassword.php">Forgot Password?</a></div>
-                                        <div class="text-center"><a class="small" href="adminlogin.php">Login As admin</a></div>
-                                        <div class="text-center"><a class="small" href="signup.php">Create an Account!</a></div>
+                                     
+                                     
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +116,6 @@ include "userlogincheck.php";
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.js"></script>
     <script src="https://geodata.solutions/includes/countrystate.js"></script>
     <script src="assets/js/slider.js"></script>
-    <script src="//code.tidio.co/dcuugxi51ylnumlxw9bji5gjqpsjcyta.js" async></script>
 </body>
 
 </html>

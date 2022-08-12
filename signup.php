@@ -2,6 +2,7 @@
 <html lang="en">
 <?php
 include "db_connection.php";
+session_start();
 ?>
 <head>
     <meta charset="utf-8">
@@ -46,27 +47,35 @@ include "db_connection.php";
                         <div class="text-center">
                             <h4 class="text-dark mb-4">Create an Account!</h4>
                         </div>
-                        <form class="user">
-                            <div class="mb-3"><input class="form-control form-control-user" type="text" placeholder="Username" required=""></div>
-                            <div class="mb-3"><input class="form-control form-control-user" type="text" placeholder="Phone Number" required=""></div>
-                            <div class="dropdown"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Location </button>
-                                <div class="dropdown-menu"><a class="dropdown-item" href="#">Gulsan</a><a class="dropdown-item" href="#">Dhanmondi</a><a class="dropdown-item" href="#">Uttara</a></div>
+                        <form class="user" action="insertuser.php" method="POST" >
+                            <div class="mb-3"><input class="form-control form-control-user" type="text" name="username" placeholder="Username" required=""></div>
+                            <div class="mb-3"><input class="form-control form-control-user" type="text" name="number" placeholder="Phone Number" required=""></div>
+                            
+                                <div class="mb-3">
+                                    <label for="select">Select location:</label>
+                                <select class="form-control" id="select" name="location">
+                                    <option value="gulsan">Gulsan</option>
+                                    <option value="dhandmondi">Dhanmondi</option>
+                                    <option value="uttara">Uttara</option>
+                                    <option value="mirpur">Mirpur</option>
+                                </select>
                             </div>
-                        <br>
-                            <div class="mb-3"><input class="form-control form-control-user" type="text" placeholder="Address" required=""></div>
-                            <div class="mb-3"><input class="form-control form-control-user" type="email" id="email" placeholder="Email Address" required=""></div>
+                            <br>
+                            <div class="mb-3"><input class="form-control form-control-user" type="text" name="address" placeholder="Address" required=""></div>
+                            <div class="mb-3"><input class="form-control form-control-user" type="email" id="email" name="email" placeholder="Email Address" required=""></div>
                             <div class="row mb-3">
-                                <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="password" id="password" placeholder="Password" required=""></div>
-                                <div class="col-sm-6"><input class="form-control form-control-user" type="password" id="verifyPassword" placeholder="Repeat Password" required=""></div>
+                                <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="password" id="password"  name="password" placeholder="Password" required=""></div>
+                                <div class="col-sm-6"><input class="form-control form-control-user" type="password" id="verifyPassword" name="password" placeholder="Repeat Password" required=""></div>
                             </div>
                             <div class="row mb-3">
-                                <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" placeholder="First Name" required=""></div>
-                                <div class="col-sm-6"><input class="form-control form-control-user" type="text" placeholder="Last Name" required=""></div>
+                                <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" name="customer_name" placeholder=" Full Name" required=""></div>
                             </div>
                             <div class="row mb-3">
                                 <p id="emailErrorMsg" class="text-danger" style="display:none;">Paragraph</p>
                                 <p id="passwordErrorMsg" class="text-danger" style="display:none;">Paragraph</p>
-                            </div><button class="btn btn-primary d-block btn-user w-100" id="submitBtn" type="submit">Register Account</button>
+                            </div>
+                            
+                            <button class="btn btn-primary d-block btn-user w-100" id="submitBtn" value="submit" type="input" name="submit">Register Account</button> 
                             <hr>
                             <div class="mb-3"></div>
                         </form>
@@ -163,6 +172,7 @@ include "db_connection.php";
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.js"></script>
     <script src="https://geodata.solutions/includes/countrystate.js"></script>
     <script src="assets/js/slider.js"></script>
+    <script src="//code.tidio.co/dcuugxi51ylnumlxw9bji5gjqpsjcyta.js" async></script>
 </body>
 
 </html>

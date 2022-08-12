@@ -11,6 +11,5 @@ if($link === false){
 // Print host information
 //echo "Connect Successfully. Host info: " . mysqli_get_host_info($link);
  
-// Close connection
-mysqli_close($link);
+
 ?>

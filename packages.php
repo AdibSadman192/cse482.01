@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+session_start();
 include "db_connection.php";
 ?>
 <head>
@@ -33,7 +34,22 @@ include "db_connection.php";
                     <li class="nav-item"><a class="nav-link" href="services.php">Services</a></li>
                     <li class="nav-item"><a class="nav-link active" href="packages.php">Packages</a></li>
                     <li class="nav-item"><a class="nav-link" href="contacts.php">Contacts</a></li>
-                </ul><a class="btn btn-primary shadow" role="button" href="login.php">Log in</a>
+                    <?php
+                    if(isset($_SESSION["email"])) {
+?>
+<?php  $_SESSION["email"]; ?><li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
+<?php
+}
+?>
+                    <?php
+                    if(isset($_SESSION["email"])) {
+?>
+<?php  $_SESSION["email"]; ?></ul><a class="btn btn-primary shadow" role="button" title="logout" href="logout.php">Logout</a>
+<?php
+}else { ?>
+  </ul><a class="btn btn-primary shadow" role="button" href="login.php">Login</a>
+<?php }
+?>
             </div>
         </div>
     </nav>
@@ -68,7 +84,8 @@ include "db_connection.php";
                                                 <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
                                             </svg></span><span>AC Gas Charge</span></li>
                                 </ul>
-                            </div><button class="btn btn-primary d-block w-100" type="button">Add To Cart</button>
+                            </div>
+                            <button class="btn btn-primary d-block w-100" type="button">Add To Cart</button>
                         </div>
                     </div>
                 </div>
@@ -134,6 +151,7 @@ include "db_connection.php";
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.js"></script>
     <script src="https://geodata.solutions/includes/countrystate.js"></script>
     <script src="assets/js/slider.js"></script>
+    <script src="//code.tidio.co/dcuugxi51ylnumlxw9bji5gjqpsjcyta.js" async></script>
 </body>
 
 </html>

@@ -2,6 +2,7 @@
 <html lang="en">
 <?php
 include "db_connection.php";
+session_start();
 ?>
 <head>
     <meta charset="utf-8">
@@ -33,7 +34,22 @@ include "db_connection.php";
                     <li class="nav-item"><a class="nav-link active" href="services.php">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="packages.php">Packages</a></li>
                     <li class="nav-item"><a class="nav-link" href="contacts.php">Contacts</a></li>
-                </ul><a class="btn btn-primary shadow" role="button" href="login.php">Log in</a>
+                    <?php
+                    if(isset($_SESSION["email"])) {
+?>
+<?php  $_SESSION["email"]; ?><li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
+<?php
+}
+?>
+                    <?php
+                    if(isset($_SESSION["email"])) {
+?>
+<?php  $_SESSION["email"]; ?></ul><a class="btn btn-primary shadow" role="button" title="logout" href="logout.php">Logout</a>
+<?php
+}else { ?>
+  </ul><a class="btn btn-primary shadow" role="button" href="login.php">Login</a>
+<?php }
+?>
             </div>
         </div>
     </nav>
@@ -109,6 +125,7 @@ include "db_connection.php";
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.js"></script>
     <script src="https://geodata.solutions/includes/countrystate.js"></script>
     <script src="assets/js/slider.js"></script>
+    <script src="//code.tidio.co/dcuugxi51ylnumlxw9bji5gjqpsjcyta.js" async></script>
 </body>
 
 </html>
