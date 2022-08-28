@@ -14,7 +14,7 @@ if(isset($_POST['submit'])){
       session_start();
       header("Location:index.php");
     } else {
-      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+      echo "Error: " . $sql . "<br>" . mysqli_error($link);
     }
     }
     
@@ -52,7 +52,10 @@ if(isset($_POST['submit'])){
                     <?php
                     if(isset($_SESSION["email"])) {
 ?>
-<?php  $_SESSION["email"]; ?><li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
+<?php  $_SESSION["email"]; ?>
+<li class="nav-item"><a class="nav-link" href="viewprofile.php">Profile</a></li>
+<li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
+
 <?php
 }
 ?>

@@ -36,12 +36,15 @@ session_start();
                     <li class="nav-item"><a class="nav-link" href="contacts.php">Contacts</a></li>
 
                     <?php
-                      if(isset($_SESSION["email"])) {
-                    ?>
-                    <?php  $_SESSION["email"]; ?><li class="nav-item"><a class="nav-link active" href="cart.php">Cart</a></li>
-                    <?php
-                    }
-                    ?>
+                    if(isset($_SESSION["email"])) {
+?>
+<?php  $_SESSION["email"]; ?>
+<li class="nav-item"><a class="nav-link" href="viewprofile.php">Profile</a></li>
+<li class="nav-item"><a class="nav-link active" href="cart.php">Cart</a></li>
+
+<?php
+}
+?>
 
                     <?php
                        if(isset($_SESSION["email"])) {

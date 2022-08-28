@@ -37,7 +37,10 @@ session_start();
                     <?php
                     if(isset($_SESSION["email"])) {
 ?>
-<?php  $_SESSION["email"]; ?><li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
+<?php  $_SESSION["email"]; ?>
+<li class="nav-item"><a class="nav-link" href="viewprofile.php">Profile</a></li>
+<li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
+
 <?php
 }
 ?>

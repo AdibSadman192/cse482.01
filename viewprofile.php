@@ -7,7 +7,7 @@ include "db_connection.php";
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Edit-Profile - Online.Service</title>
+    <title>Profile - Online.Service</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,6 +16,7 @@ include "db_connection.php";
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.css">
     <link rel="stylesheet" href="assets/css/slider.css">
+    <link rel="stylesheet" href="assets/css/Account-setting-or-edit-profile.css?h=3cfa6b00ed0bd96b2a810a3f1f2d2025">
     
 </head>
 
@@ -59,17 +60,9 @@ include "db_connection.php";
     </nav>
 
     <section class="py-5">
-        <div class="card">
-            <div class="card-body">
-                <div class="container-fluid">
-                    <h3 class="text-dark mb-4"> </h3>
-                    <div class="card shadow mb-3">
-                        <div class="card-body">
-                            <form action="updateuser.php" method="POST">
-                                <div class="row" style="margin-bottom: 25px;text-align: left;">
-                                    <div class="col-sm-8 col-md-8 col-lg-9 col-xl-10 col-xxl-10 align-self-center">
-                                        <div class="row">
-                                        <?php
+
+  
+                             <?php
                              
                              if (isset($_SESSION["email"])) {
                             $email = $_SESSION["email"];
@@ -77,6 +70,7 @@ include "db_connection.php";
 
                             $result = mysqli_query($link, $sql);
                             while ($rows = mysqli_fetch_assoc($result)) {
+
                                 $customer_id = $rows['customer_id'];
                                 $customer_name = $rows['customer_name'];
                                 $username = $rows['username'];
@@ -88,57 +82,94 @@ include "db_connection.php";
 
                             ?>
 
-                                            <div class="col-md-12 text-start">
-                                                <div class="mb-3"><label class="form-label" for="email"><strong>Email Address</strong></label><h6 class="text-muted"><?php echo $email ?></h6></div>
-                                            </div>
-                                            <div class="col-md-12 text-start">
-                                                <div class="mb-3"><label class="form-label" for="username"><strong>Username</strong></label><input class="form-control" type="text" placeholder="<?php echo $username ?>" name="username" required=""></div>
+                           
+                           
+
+                            
+                            <?php
+                        }
+                    }
+                    ?>
+                    
+
+
+    </section>
+                                <section class="py-5" >
+
+                                <div class="card">
+                                <div class="row gutters">
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="account-settings">
+                                            <div class="user-profile">
+                                            
+                                                <h5 class="user-name"><?php echo $username ?></h5>
+                                                <h6 class="user-email"><?php echo $email ?></h6>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 text-start">
-                                        <div class="mb-3"><label class="form-label" for="username"><strong>Password</strong></label><input class="form-control" type="password" id="password" placeholder="<?php echo $password ?>"></div>
-                                    </div>
-                                    <div class="col-md-6 text-start">
-                                        <div class="mb-3"><label class="form-label" for="username"><strong>Confirm Password</strong></label><input class="form-control" type="password" id="verifyPassword" placeholder="<?php echo $password ?>"></div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Full Name</strong></label><input class="form-control" type="text" placeholder="<?php echo $customer_name ?>" name="customer_name" required=""></div>
-                                    </div>
-        
-                                    <div class="col-md-6">
-                                    <label for="select">Select location:</label>
-                                <select class="form-control" id="select" name="location" placeholder="<?php echo $location ?>">
-                                    <option value="gulsan">Gulsan</option>
-                                    <option value="dhandmondi">Dhanmondi</option>
-                                    <option value="uttara">Uttara</option>
-                                    <option value="mirpur">Mirpur</option>
-                                </select>
-                            </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3"><label class="form-label" for="phone"><strong>Phone</strong></label><input class="form-control" type="text"  name="number"  placeholder="<?php echo $number ?>" required=""></div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3"><label class="form-label" for="address"><strong>Address</strong></label><input class="form-control" type="text" placeholder="<?php echo $address ?>" name="address"></div>
-                                    </div>
-                                    <div class="col">
-                                        <p id="emailErrorMsg" class="text-danger" style="display:none;"></p>
-                                        <p id="passwordErrorMsg" class="text-danger" style="display:none;"></p>
-                                    </div>
-                                    <div class="col-md-12" style="text-align: right;margin-top: 5px;"><button class="btn btn-primary btn-sm" id="submitBtn" type="submit" name="submit">Save</button></div>
                                 </div>
-                                <?php 
-                                }
-                                        }
-                                ?>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                </div>
+                                <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="row gutters">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <h6 class="mb-2 text-primary">Personal Details</h6>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="fullName">Full Name</label>
+                                                    <h6 class="text-muted"><?php echo $customer_name ?></h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="eMail">Email</label>
+                                                    <h6 class="text-muted"><?php echo $email ?></h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="phone">Phone</label>
+                                                    <h6 class="text-muted"><?php echo $number?></h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="website">Location</label>
+                                                    <h6 class="text-muted"><?php echo $location?></h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row gutters">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <h6 class="mt-3 mb-2 text-primary">Address</h6>
+                                                <h6 class="text-muted"><?php echo $address ?></h6>
+                                            </div>
+                                            
+                                        
+                                        </div>
+                                        <div class="row gutters">
+                                        
+                                                
+                                                
+                                                <div class="col-md-12" style="text-align: center;margin-top: 5px;"><a class="nav-link" href="editprofile.php"><button class="btn btn-primary btn-sm" id="submitBtn" type="submit">Edit Information</button></a></div>
+                                                
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
 
-    </section>
+
+
+
+
+                </section>
     <!-- footer -->
     <footer class="text-center">
         <div class="container text-muted py-4 py-lg-5">

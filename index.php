@@ -40,7 +40,10 @@ session_start();
                     <?php
                     if(isset($_SESSION["email"])) {
 ?>
-<?php  $_SESSION["email"]; ?><li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
+<?php  $_SESSION["email"]; ?>
+<li class="nav-item"><a class="nav-link" href="viewprofile.php">Profile</a></li>
+<li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
+
 <?php
 }
 ?>
@@ -51,7 +54,9 @@ session_start();
                       
                     if(isset($_SESSION["email"])) {
 ?>
-<?php  $_SESSION["email"]; ?></ul><a class="btn btn-primary shadow" role="button" title="logout" href="logout.php">Logout</a>
+<?php  $_SESSION["email"]; ?></ul>
+<a class="btn btn-primary shadow" role="button" title="logout" href="logout.php">Logout</a>
+
 <?php
 }else { ?>
   </ul><a class="btn btn-primary shadow" role="button" href="login.php">Login</a>
@@ -80,8 +85,22 @@ session_start();
 
  <!-- Search box -->
 <div class="form-outline">
-  <input type="search" id="search" class="form-control" placeholder="Type query" aria-label="Search" />
+<input class="form-control form-control ps-4 pe-4 rounded-pill" type="text" name="search" id="myInput" placeholder="Search..." />
 </div> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#display *").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+
+
 
     </section>
 <br> 
@@ -95,7 +114,7 @@ session_start();
       </div>
     </div>
     <!-- Row  -->
-    <div class="row mt-5">
+    <div class="row mt-5"  id="display">
       <!-- Column -->
 
       <?php
@@ -106,7 +125,7 @@ session_start();
             if(mysqli_num_rows($result) > 0){
       while($row = mysqli_fetch_assoc($result)) {
         ?>
-      <div class="col-lg-3 col-md-6" id="display">
+      <div class="col-lg-3 col-md-6">
         <div class="card text-center card-shadow on-hover border-0 mb-4">
           <div class="card-body font-14">
             <h5 class="mt-3 mb-1 font-weight-medium"><?php echo $row['hpackages_name'];?></h5>
